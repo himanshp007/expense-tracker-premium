@@ -26,7 +26,7 @@ exports.showLeaderboard = async (req, res, next) => {
 exports.showAllExpenses = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
-        const limit = 2;
+        const limit = parseInt(req.query.rows) || 5;
         const offset = (page - 1) * limit;
 
         const expensesData = await req.user.getExpenses({
@@ -35,8 +35,6 @@ exports.showAllExpenses = async (req, res) => {
         });
 
         const totalCount = await req.user.countExpenses();
-
-        console.log(expensesData, totalCount)
 
         res.status(200).json({
             result: expensesData,
