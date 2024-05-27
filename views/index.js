@@ -236,7 +236,7 @@ function premiumUser() {
     leaderBtn.id = 'leaderbtn'
     const dwnbutton = document.createElement("button")
     dwnbutton.id = 'download-data'
-    dwnbutton.innerHTML = 'Download Expenses';
+    dwnbutton.innerHTML = 'Show Expenses';
     headingElement.appendChild(leaderBtn);
     headingElement.appendChild(dwnbutton);
     premiumDiv.appendChild(headingElement);
@@ -266,14 +266,7 @@ function premiumUser() {
 
     dwnbutton.onclick = async function(event) {
 
-        const token = localStorage.getItem('token');
-        axios.get('http://localhost:3000/user/download', { headers: { 'Authorization': token }})
-        .then(response => {
-            var a = document.createElement('a');
-            a.href = response.data.url;
-            a.click();
-        }).catch(err => console.log(err))
-
+        window.location.href = '../views/report.html';
     }
 }
 

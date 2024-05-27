@@ -21,3 +21,31 @@ exports.showLeaderboard = async (req, res, next) => {
         res.status(404).json({ result: err });
     }
 };
+
+
+exports.showAllExpenses = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = 2;
+        const offset = (page - 1) * limit;
+
+        const expensesData = await req.user.getExpenses({
+            limit: limit,
+            offset: offset
+        });
+
+        const totalCount = await req.user.countExpenses();
+
+        console.log(expensesData, totalCount)
+
+        res.status(200).json({
+            result: expensesData,
+            currentPage: page,
+            totalPages: Math.ceil(totalCount / limit)
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(404).json({ result: err });
+    }
+};
+

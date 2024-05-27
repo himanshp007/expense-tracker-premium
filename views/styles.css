@@ -55,6 +55,12 @@ td{
     width: 1.6%;
 }
 
+button.active {
+    font-weight: bold;
+    background-color: #ccc;
+}
+
+
 
 
 
