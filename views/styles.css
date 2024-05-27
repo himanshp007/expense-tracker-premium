@@ -1,0 +1,65 @@
+body {
+    text-align: center;
+    align-items: center
+}
+
+.container {
+    margin: 1% 2% 1% 2%;
+}
+
+#logo {
+    text-decoration: none;
+    font-size: 2vw;
+    color: rgb(26, 237, 174);
+}
+
+table {
+    margin: 0 auto; /* Center-aligns the table */
+    width: 80%; /* Adjust the width as needed */
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+tr, th, td {
+    border: 1px solid black;
+}
+
+#monthly-heading th, #notes-heading th, #yearly-heading th{
+    background-color: rgb(26, 237, 174);
+    color: white;
+}
+
+td{
+    background-color: rgb(229, 225, 225);
+}
+
+.download-btn {
+    float: right;
+    margin-right: 10%;
+    margin-top: 10%;
+    border: 1px solid white;
+    padding: 1.2%;
+    border-radius: 100%;
+    background-color: rgb(26, 237, 174);
+}
+
+#icon {
+    text-decoration: none;
+}
+.ri-arrow-down-line {
+    background-color: rgb(26, 237, 174);
+    color: white;
+    border-radius: 100%;
+    font-size: 1.5vw;
+    width: 1.6%;
+}
+
+button.active {
+    font-weight: bold;
+    background-color: #ccc;
+}
+
+
+
+
+
