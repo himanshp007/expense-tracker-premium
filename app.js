@@ -5,7 +5,6 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
-// const compression = require('compression')
 
 const sequelize = require('./utils/database');
 const User = require('./models/user');
@@ -35,7 +34,6 @@ const accessLogStream = fs.createWriteStream(
 
 app.use(helmet());
 app.use(morgan('combined', {stream: accessLogStream} ))
-// app.use(compression());
 
 app.use('/user', userRoutes);
 app.use('/expense', expenseRoutes);
