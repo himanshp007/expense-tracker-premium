@@ -71,4 +71,4 @@ sequelize.sync()
     console.error("Database sync error:", err);
 });
 
-// fixed the bcrypt library
+// fixed the bcrypt library again
