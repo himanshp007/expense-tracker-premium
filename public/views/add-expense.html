@@ -6,7 +6,7 @@
     <title>Expense</title>
 </head>
 <body>
-    <form onsubmit="handleAddExpense(event)">
+    <form id="addExpenseForm">
         <label for="amount">Expense Amount</label>
         <input type="number" name="amount" id="amount" required>
         <label for="description">Description</label>
@@ -31,7 +31,7 @@
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

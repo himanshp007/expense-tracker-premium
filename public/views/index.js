@@ -1,9 +1,41 @@
+import axios from 'axios';
 
 window.addEventListener('DOMContentLoaded', ()=> {
 
+
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        handleSignup(event);
+    })
+
+
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        handleLogin(event);
+    })
+
+    const resetPassForm = document.getElementById('resetPassForm');
+    resetPassForm.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        handlePasswordReset(event);
+    })
+
+    const addExpenseForm = document.getElementById('addExpenseForm');
+    addExpenseForm.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        handleAddExpense(event);
+    })
+
+    const forgotBtn = document.getElementById('forgot');
+    forgotBtn.addEventListener('click', function(event) {
+        window.location.href = '../views/password-reset.html';
+    })
+
     const token = localStorage.getItem('token')
 
-    axios.get('http://13.48.68.223:3000/expense/get-expense', {headers: {'Authorization': token}})
+    axios.get('http://16.171.53.53:3000/expense/get-expense', {headers: {'Authorization': token}})
         .then( (response) => { 
             if (response.data.premiumuserCheck) {
                 const button = document.getElementById('rzrpay-btn');
@@ -23,8 +55,6 @@ window.addEventListener('DOMContentLoaded', ()=> {
 
 
 function handleSignup(event) {
-    event.preventDefault();
-
     const formData = event.target.elements;
     const signupData = {
         name: formData.name.value,
@@ -33,10 +63,12 @@ function handleSignup(event) {
     };
 
     resetForm('signup');
+
+    console.log('before req')
     
-    axios.post('http://13.48.68.223:3000/user/signup', signupData)
+    axios.post('http://16.171.53.53:3000/user/signup', signupData)
         .then(response => {
-            displayMessage(response.data.message, response.status);
+            window.location.href = '../views/add-expense.html';
         })
         .catch(err => {
             displayMessage(err.response.data.message);
@@ -45,7 +77,6 @@ function handleSignup(event) {
 
 
 function handleLogin(event) {
-    event.preventDefault();
 
     const formData = event.target.elements;
     const loginData = {
@@ -55,7 +86,7 @@ function handleLogin(event) {
 
     resetForm('login');
 
-    axios.post('http://13.48.68.223:3000/user/login', loginData)
+    axios.post('http://16.171.53.53:3000/user/login', loginData)
         .then(response => {
             localStorage.setItem('token', response.data.token);
             window.location.href = '../views/add-expense.html';
@@ -65,13 +96,8 @@ function handleLogin(event) {
         });
 }
 
-function clickedForgot(event){
-    window.location.href = '../views/password-reset.html';
-}
-
 
 function handlePasswordReset(event) {
-    event.preventDefault();
 
     const formData = event.target.elements;
     const resetData = {
@@ -80,7 +106,7 @@ function handlePasswordReset(event) {
 
     resetForm('resetPass');
 
-    axios.post('http://13.48.68.223:3000/password/forgotpassword', resetData)
+    axios.post('http://16.171.53.53:3000/password/forgotpassword', resetData)
         .then(response => {
             console.log(response)
         })
@@ -91,7 +117,6 @@ function handlePasswordReset(event) {
 
 
 function handleAddExpense(event) {
-    event.preventDefault();
 
     const formData = event.target.elements;
 
@@ -104,7 +129,7 @@ function handleAddExpense(event) {
     resetForm('addExpense');
 
     const token = localStorage.getItem('token')
-    axios.post('http://13.48.68.223:3000/expense/add-expense',expenseData, {headers: {'Authorization': token}})
+    axios.post('http://16.171.53.53:3000/expense/add-expense',expenseData, {headers: {'Authorization': token}})
         .then(response => {
             displayExpenses();
         })
@@ -119,7 +144,7 @@ function handleAddExpense(event) {
 
 function displayExpenses() {
     const token = localStorage.getItem('token')
-    axios.get('http://13.48.68.223:3000/expense/get-expense', { headers: { 'Authorization': token }})
+    axios.get('http://16.171.53.53:3000/expense/get-expense', { headers: { 'Authorization': token }})
         .then(response => { 
 
             const allItems = document.querySelector('ul');
@@ -144,7 +169,7 @@ function createFront(item, token) {
 
     deleteBtn.addEventListener('click', async () => {
         try {
-            await axios.delete(`http://13.48.68.223:3000/expense/delete-expense/${item.id}`, { headers: { 'Authorization': token }});
+            await axios.delete(`http://16.171.53.53:3000/expense/delete-expense/${item.id}`, { headers: { 'Authorization': token }});
             displayExpenses();
         } catch (err) {
             console.log(err);
@@ -195,14 +220,14 @@ function resetForm(formType){
 document.getElementById('rzrpay-btn').onclick = async function(event) {
     console.log("print")
     const token = localStorage.getItem('token');
-    const response = await axios.get(`http://13.48.68.223:3000/purchase/premiummembership`, {headers: {"Authorization": token}});
+    const response = await axios.get(`http://16.171.53.53:3000/purchase/premiummembership`, {headers: {"Authorization": token}});
 
     var options = {
         'key': response.data.key_id,
         'order_id': response.data.order.id,
 
         'handler': async function (response) {
-            await axios.post(`http://13.48.68.223:3000/purchase/updatetransactionstatus`, {
+            await axios.post(`http://16.171.53.53:3000/purchase/updatetransactionstatus`, {
                 order_id: options.order_id,
                 payment_id: response.razorpay_payment_id,
             }, {headers: {'Authorization': token}})
@@ -244,7 +269,7 @@ function premiumUser() {
     leaderBtn.onclick = async function(event) {
 
         const token = localStorage.getItem('token');
-        axios.get('http://13.48.68.223:3000/premium/showleaderboard', { headers: { 'Authorization': token }})
+        axios.get('http://16.171.53.53:3000/premium/showleaderboard', { headers: { 'Authorization': token }})
         .then(response => {
             
             const data = response.data.result;

@@ -1,10 +1,19 @@
-
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const path = require('path')
 
 const User = require('../models/user');
 
 require('dotenv').config()
+
+
+exports.getLogin = (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'views', 'login.html'));
+};
+
+exports.getSignup = (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'views', 'signup.html'));
+};
 
 
 exports.postUser = async (req, res, next) => {
@@ -14,6 +23,8 @@ exports.postUser = async (req, res, next) => {
         if (!req.body.name || !req.body.email || !req.body.password) {
             throw new Error("All fields are mandatory");
         }
+
+        console.log(name,email,password)
         const {name, email, password} = req.body;
 
         const user = await User.findOne({where: {email: email}})
