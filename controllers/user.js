@@ -18,6 +18,8 @@ exports.getSignup = (req, res) => {
 
 exports.postUser = async (req, res, next) => {
 
+    console.log('insidepost')
+
     try{
 
         console.log('inside')
