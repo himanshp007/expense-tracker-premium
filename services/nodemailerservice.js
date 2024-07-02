@@ -18,7 +18,7 @@ exports.nodemailerMail = (email , id) => {
           from: process.env.NODEMAILER_USER,
           to: email,
           subject: "Password Reset", 
-          html: `<p>Here is the link to reset your password: <a href="http://16.171.53.53:3000/password/resetpassword/${id}">Reset Password</a></p>`
+          html: `<p>Here is the link to reset your password: <a href="http://52.91.108.81/password/resetpassword/${id}">Reset Password</a></p>`
         });
       
         console.log("Message sent: %s", info.messageId);

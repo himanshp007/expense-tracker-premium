@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
 
     const token = localStorage.getItem('token')
 
-    axios.get('http://16.171.53.53:3000/expense/get-expense', {headers: {'Authorization': token}})
+    axios.get('http://52.91.108.81/expense/get-expense', {headers: {'Authorization': token}})
         .then( (response) => { 
             if (response.data.premiumuserCheck) {
                 const button = document.getElementById('rzrpay-btn');
@@ -40,7 +40,7 @@ function handleAddExpense(event) {
     resetForm();
 
     const token = localStorage.getItem('token')
-    axios.post('http://16.171.53.53:3000/expense/add-expense',expenseData, {headers: {'Authorization': token}})
+    axios.post('http://52.91.108.81/expense/add-expense',expenseData, {headers: {'Authorization': token}})
         .then(response => {
             displayExpenses();
         })
@@ -55,7 +55,7 @@ function handleAddExpense(event) {
 
 function displayExpenses() {
     const token = localStorage.getItem('token')
-    axios.get('http://16.171.53.53:3000/expense/get-expense', { headers: { 'Authorization': token }})
+    axios.get('http://52.91.108.81/expense/get-expense', { headers: { 'Authorization': token }})
         .then(response => { 
 
             const allItems = document.querySelector('ul');
@@ -80,7 +80,7 @@ function createFront(item, token) {
 
     deleteBtn.addEventListener('click', async () => {
         try {
-            await axios.delete(`http://16.171.53.53:3000/expense/delete-expense/${item.id}`, { headers: { 'Authorization': token }});
+            await axios.delete(`http://52.91.108.81/expense/delete-expense/${item.id}`, { headers: { 'Authorization': token }});
             displayExpenses();
         } catch (err) {
             console.log(err);
@@ -121,14 +121,14 @@ function resetForm(){
 document.getElementById('rzrpay-btn').onclick = async function(event) {
     console.log("print")
     const token = localStorage.getItem('token');
-    const response = await axios.get(`http://16.171.53.53:3000/purchase/premiummembership`, {headers: {"Authorization": token}});
+    const response = await axios.get(`http://52.91.108.81/purchase/premiummembership`, {headers: {"Authorization": token}});
 
     var options = {
         'key': response.data.key_id,
         'order_id': response.data.order.id,
 
         'handler': async function (response) {
-            await axios.post(`http://16.171.53.53:3000/purchase/updatetransactionstatus`, {
+            await axios.post(`http://52.91.108.81/purchase/updatetransactionstatus`, {
                 order_id: options.order_id,
                 payment_id: response.razorpay_payment_id,
             }, {headers: {'Authorization': token}})
@@ -170,7 +170,7 @@ function premiumUser() {
     leaderBtn.onclick = async function(event) {
 
         const token = localStorage.getItem('token');
-        axios.get('http://16.171.53.53:3000/premium/showleaderboard', { headers: { 'Authorization': token }})
+        axios.get('http://52.91.108.81/premium/showleaderboard', { headers: { 'Authorization': token }})
         .then(response => {
             
             const data = response.data.result;

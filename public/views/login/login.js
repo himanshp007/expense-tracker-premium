@@ -26,7 +26,7 @@ function handleLogin(event) {
 
     resetForm();
 
-    axios.post('http://16.171.53.53:3000/user/login', loginData)
+    axios.post('http://52.91.108.81/user/login', loginData)
         .then(response => {
             localStorage.setItem('token', response.data.token);
             window.location.href = '../views/add-expense.html';

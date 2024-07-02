@@ -21,7 +21,7 @@ function handleSignup(event) {
 
     resetForm();
     
-    axios.post('http://16.171.53.53:3000/user/signup', signupData)
+    axios.post('http://52.91.108.81/user/signup', signupData)
         .then(response => {
             window.location.href = '../views/add-expense.html';
         })
