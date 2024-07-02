@@ -32,8 +32,8 @@ const accessLogStream = fs.createWriteStream(
   {flags: 'a'}
 );
 
-// app.use(helmet());
-// app.use(morgan('combined', {stream: accessLogStream} ))
+app.use(helmet());
+app.use(morgan('combined', {stream: accessLogStream} ))
 
 
 app.use('/user', userRoutes);
@@ -47,19 +47,6 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, `public/${req.url}`));
 });
 
-// app.get('/signup', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public/signup/signup.html'));
-// });
-
-// app.get('/forgotpassword', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public/reset/password-reset.html'));
-// });
-
-
-
-// app.use((req, res) => {
-//   res.sendFile(path.join(__dirname, `public/${req.url}`));
-// });
 
 
 
