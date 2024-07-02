@@ -1,36 +1,38 @@
-window.addEventListener('DOMContentLoaded', ()=> {
+window.addEventListener('DOMContentLoaded', () => {
 
 
     const signupForm = document.getElementById('signupForm');
     signupForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleSignup(event);
+      event.preventDefault();
+      handleSignup(event);
     })
-});
-
-
-
-
-function handleSignup(event) {
+  });
+  
+  
+  
+  
+  function handleSignup(event) {
     const formData = event.target.elements;
     const signupData = {
-        name: formData.name.value,
-        email: formData.email.value,
-        password: formData.password.value
+      name: formData.name.value,
+      email: formData.email.value,
+      password: formData.password.value
     };
-
-    console.log(name, email, password);
-
-    resetForm();
+  
+    console.log(signupData.name, signupData.email, signupData.password);
     
     axios.post('http://52.91.108.81/user/signup', signupData)
-        .then(response => {
-            window.location.href = 'http://52.91.108.81/expense/add-expense.html';
-        })
-        .catch(err => {
-            displayMessage(err);
-        });
-};
+      .then(response => {
+        window.location.href = 'http://52.91.108.81/expense/add-expense.html';
+      })
+      .catch(err => {
+        let message = 'Signup failed. Please try again.';
+        if (err.response && err.response.data) {
+          message = err.response.data.message || message; // Use error message from response if available
+        }
+        displayMessage(message);
+      });
+}
 
 
 
