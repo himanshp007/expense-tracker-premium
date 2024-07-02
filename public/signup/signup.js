@@ -19,7 +19,7 @@ function handleSignup(event) {
         password: formData.password.value
     };
 
-    console.log(formData);
+    console.log(name, email, password);
 
     resetForm();
     
