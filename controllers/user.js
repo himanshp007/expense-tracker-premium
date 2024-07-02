@@ -20,6 +20,8 @@ exports.postUser = async (req, res, next) => {
 
     try{
 
+        console.log('inside')
+
         if (!req.body.name || !req.body.email || !req.body.password) {
             throw new Error("All fields are mandatory");
         }

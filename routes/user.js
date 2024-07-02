@@ -7,9 +7,9 @@ const expenseController = require('../controllers/add-expense');
 const userauth = require('../middleware/auth');
 
 
-router.get('/login', userController.getLogin)
+// router.get('/login', userController.getLogin)
 
-router.get('/signup', userController.getLogin)
+// router.get('/signup', userController.getLogin)
 
 router.post('/signup', userController.postUser);
 
