@@ -25,10 +25,10 @@ function handleSignup(event) {
     
     axios.post('http://52.91.108.81/user/signup', signupData)
         .then(response => {
-            window.location.href = '../views/add-expense.html';
+            window.location.href = 'http://52.91.108.81/expense/add-expense.html';
         })
         .catch(err => {
-            displayMessage(err.response.data.message);
+            displayMessage(err);
         });
 };
 
