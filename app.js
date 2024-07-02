@@ -43,9 +43,18 @@ app.use('/premium', premiumRoutes);
 app.use('/password', passwordRoutes);
 
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/login/login.html'));
+app.get((req, res) => {
+  res.sendFile(path.join(__dirname, `public/${req.url}`));
 });
+
+// app.get('/signup', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public/signup/signup.html'));
+// });
+
+// app.get('/forgotpassword', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public/reset/password-reset.html'));
+// });
+
 
 
 // app.use((req, res) => {
