@@ -19,6 +19,8 @@ function handleSignup(event) {
         password: formData.password.value
     };
 
+    console.log(formData);
+
     resetForm();
     
     axios.post('http://52.91.108.81/user/signup', signupData)
