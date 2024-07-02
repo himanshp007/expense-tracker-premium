@@ -26,11 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'http://52.91.108.81/expense/add-expense.html';
       })
       .catch(err => {
-        let message = 'Signup failed. Please try again.';
-        if (err.response && err.response.data) {
-          message = err.response.data.message || message; // Use error message from response if available
-        }
-        displayMessage(message);
+        console.log(err)
       });
 }
 
