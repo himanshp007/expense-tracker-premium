@@ -18,18 +18,16 @@ exports.getSignup = (req, res) => {
 
 exports.postUser = async (req, res, next) => {
 
-    console.log('insidepost')
 
     try{
-
-        console.log('inside')
 
         if (!req.body.name || !req.body.email || !req.body.password) {
             throw new Error("All fields are mandatory");
         }
 
-        console.log(name,email,password)
+        
         const {name, email, password} = req.body;
+        console.log(name,email,password)
 
         const user = await User.findOne({where: {email: email}})
 
