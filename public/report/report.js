@@ -31,7 +31,7 @@ function getDate() {
 function displayAllExpenses(page = 1) {
     const token = localStorage.getItem('token');
     const rows = localStorage.getItem('rows');
-    axios.get(`http://52.91.108.81/premium/showexpenses?page=${page}&rows=${rows}`, { headers: { 'Authorization': token }})
+    axios.get(`http://54.163.4.78:3000/premium/showexpenses?page=${page}&rows=${rows}`, { headers: { 'Authorization': token }})
     .then(response => {
         const data = response.data.result;
         console.log(data)
@@ -137,7 +137,7 @@ function setRows(){
 document.getElementsByClassName('download-btn')[0].onclick = async function(event) {
 
     const token = localStorage.getItem('token');
-    await axios.get('http://52.91.108.81/user/download', { headers: { 'Authorization': token }})
+    await axios.get('http://54.163.4.78:3000/user/download', { headers: { 'Authorization': token }})
     .then(response => {
         var a = document.createElement('a');
         a.href = response.data.url;

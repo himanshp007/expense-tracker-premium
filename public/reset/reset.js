@@ -20,7 +20,7 @@ function handlePasswordReset(event) {
 
     resetForm();
 
-    axios.post('http://52.91.108.81/password/forgotpassword', resetData)
+    axios.post('http://54.163.4.78:3000/password/forgotpassword', resetData)
         .then(response => {
             console.log(response)
         })

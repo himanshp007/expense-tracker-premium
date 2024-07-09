@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
 
     const token = localStorage.getItem('token')
 
-    axios.get('http://52.91.108.81/expense/get-expense', {headers: {'Authorization': token}})
+    axios.get('http://54.163.4.78:3000/expense/get-expense', {headers: {'Authorization': token}})
         .then( (response) => { 
             if (response.data.premiumuserCheck) {
                 const button = document.getElementById('rzrpay-btn');
@@ -64,7 +64,7 @@ function handleSignup(event) {
 
     console.log('before req')
     
-    axios.post('http://52.91.108.81/user/signup', signupData)
+    axios.post('http://54.163.4.78:3000/user/signup', signupData)
         .then(response => {
             window.location.href = '../views/add-expense.html';
         })
@@ -84,7 +84,7 @@ function handleLogin(event) {
 
     resetForm('login');
 
-    axios.post('http://52.91.108.81/user/login', loginData)
+    axios.post('http://54.163.4.78:3000/user/login', loginData)
         .then(response => {
             localStorage.setItem('token', response.data.token);
             window.location.href = '../views/add-expense.html';
@@ -104,7 +104,7 @@ function handlePasswordReset(event) {
 
     resetForm('resetPass');
 
-    axios.post('http://52.91.108.81/password/forgotpassword', resetData)
+    axios.post('http://54.163.4.78:3000/password/forgotpassword', resetData)
         .then(response => {
             console.log(response)
         })
@@ -127,7 +127,7 @@ function handleAddExpense(event) {
     resetForm('addExpense');
 
     const token = localStorage.getItem('token')
-    axios.post('http://52.91.108.81/expense/add-expense',expenseData, {headers: {'Authorization': token}})
+    axios.post('http://54.163.4.78:3000/expense/add-expense',expenseData, {headers: {'Authorization': token}})
         .then(response => {
             displayExpenses();
         })
@@ -142,7 +142,7 @@ function handleAddExpense(event) {
 
 function displayExpenses() {
     const token = localStorage.getItem('token')
-    axios.get('http://52.91.108.81/expense/get-expense', { headers: { 'Authorization': token }})
+    axios.get('http://54.163.4.78:3000/expense/get-expense', { headers: { 'Authorization': token }})
         .then(response => { 
 
             const allItems = document.querySelector('ul');
@@ -167,7 +167,7 @@ function createFront(item, token) {
 
     deleteBtn.addEventListener('click', async () => {
         try {
-            await axios.delete(`http://52.91.108.81/expense/delete-expense/${item.id}`, { headers: { 'Authorization': token }});
+            await axios.delete(`http://54.163.4.78:3000/expense/delete-expense/${item.id}`, { headers: { 'Authorization': token }});
             displayExpenses();
         } catch (err) {
             console.log(err);
@@ -218,14 +218,14 @@ function resetForm(formType){
 document.getElementById('rzrpay-btn').onclick = async function(event) {
     console.log("print")
     const token = localStorage.getItem('token');
-    const response = await axios.get(`http://52.91.108.81/purchase/premiummembership`, {headers: {"Authorization": token}});
+    const response = await axios.get(`http://54.163.4.78:3000/purchase/premiummembership`, {headers: {"Authorization": token}});
 
     var options = {
         'key': response.data.key_id,
         'order_id': response.data.order.id,
 
         'handler': async function (response) {
-            await axios.post(`http://52.91.108.81/purchase/updatetransactionstatus`, {
+            await axios.post(`http://54.163.4.78:3000/purchase/updatetransactionstatus`, {
                 order_id: options.order_id,
                 payment_id: response.razorpay_payment_id,
             }, {headers: {'Authorization': token}})
@@ -267,7 +267,7 @@ function premiumUser() {
     leaderBtn.onclick = async function(event) {
 
         const token = localStorage.getItem('token');
-        axios.get('http://52.91.108.81/premium/showleaderboard', { headers: { 'Authorization': token }})
+        axios.get('http://54.163.4.78:3000/premium/showleaderboard', { headers: { 'Authorization': token }})
         .then(response => {
             
             const data = response.data.result;
