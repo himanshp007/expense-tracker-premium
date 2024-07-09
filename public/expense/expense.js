@@ -192,7 +192,7 @@ function premiumUser() {
 
     dwnbutton.onclick = async function(event) {
 
-        window.location.href = '../views/report.html';
+        window.location.href = 'http://54.163.4.78:3000/report/report.html';
     }
 }
 

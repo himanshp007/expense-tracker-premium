@@ -29,7 +29,7 @@ function handleLogin(event) {
     axios.post('http://54.163.4.78:3000/user/login', loginData)
         .then(response => {
             localStorage.setItem('token', response.data.token);
-            window.location.href = '../views/add-expense.html';
+            window.location.href = 'http://54.163.4.78:3000/expense/add-expense.html';
         })
         .catch(err => {
             displayMessage(err.response.data.message);

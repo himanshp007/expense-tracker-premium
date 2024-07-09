@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     axios.post('http://54.163.4.78:3000/user/signup', signupData)
       .then(response => {
-        window.location.href = 'http://54.163.4.78:3000/expense/add-expense.html';
+        window.location.href = 'http://54.163.4.78:3000/login/login.html';
       })
       .catch(err => {
         console.log(err)
