@@ -28,7 +28,9 @@ function getDate() {
 
 function displayAllExpenses(page = 1) {
     const token = localStorage.getItem('token');
+    console.log(token)
     const rows = localStorage.getItem('rows');
+    console.log(rows)
     axios.get(`http://54.163.4.78:3000/premium/showexpenses?page=${page}&rows=${rows}`, { headers: { 'Authorization': token }})
     .then(response => {
         const data = response.data.result;
