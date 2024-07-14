@@ -22,7 +22,7 @@ function getDate() {
     document.getElementById("date").innerHTML = formattedDate;
     document.getElementById('this-year').innerHTML = year;
     document.getElementById('this-month').innerHTML = month + ' ' + year;
-    document.getElementById('notes-year').innerHTML = 'Notes Report' + ' ' + year;
+    // document.getElementById('notes-year').innerHTML = 'Notes Report' + ' ' + year;
 }
 
 
