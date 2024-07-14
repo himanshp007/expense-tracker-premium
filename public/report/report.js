@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event){
     getDate();
     displayAllExpenses();
+    document.getElementsByClassName('download-btn')[0].onclick = downloadData();
 })
+
 
 
 function getDate() {
@@ -134,7 +136,7 @@ function setRows(){
 
 
 
-document.getElementsByClassName('download-btn')[0].onclick = async function(event) {
+async function downloadData() {
 
     const token = localStorage.getItem('token');
     console.log('in')
@@ -151,7 +153,7 @@ document.getElementsByClassName('download-btn')[0].onclick = async function(even
 
 
 
-{/* <div class="yearly-expense">
+/* <div class="yearly-expense">
     <h3>Yearly Report</h3>
     <table>
         <tr id="yearly-heading">
@@ -181,4 +183,4 @@ document.getElementsByClassName('download-btn')[0].onclick = async function(even
             <td>Notes</td>
         </tr>
     </table>
-</div> */}
+</div> */
