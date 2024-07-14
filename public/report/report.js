@@ -148,3 +148,37 @@ document.getElementsByClassName('download-btn')[0].onclick = async function(even
 
 }
 
+
+
+
+{/* <div class="yearly-expense">
+    <h3>Yearly Report</h3>
+    <table>
+        <tr id="yearly-heading">
+          <th>Month</th>
+          <th>Income</th>
+          <th>Expense</th>
+          <th>Savings</th>
+        </tr>
+        <tr id="yearly-data">
+          <td>Alfreds</td>
+          <td>Maria Anders</td>
+          <td>Germany</td>
+          <td>Maria Anders</td>
+        </tr>
+      </table>
+</div>
+
+<div class="notes-report">
+    <h3 id="notes-year"></h3>
+    <table>
+        <tr id="notes-heading">
+            <th>Date</th>
+            <th>Notes</th>
+        </tr>
+        <tr id="notes-data">
+            <td>Date</td>
+            <td>Notes</td>
+        </tr>
+    </table>
+</div> */}
