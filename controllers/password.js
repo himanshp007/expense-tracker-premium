@@ -109,7 +109,7 @@ exports.finalizingReset = async (req, res) => {
 
         passwordReq.isActive = false;
         await passwordReq.save();
-        const externalURL = 'http://127.0.0.1:5500/views/login.html';
+        const externalURL = 'http://54.163.4.78:3000/login/login.html';
         return res.redirect(302, externalURL);
 
     } catch (err) {

@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
 
     const forgotBtn = document.getElementById('forgot');
     forgotBtn.addEventListener('click', function(event) {
-        window.location.href = '../views/password-reset.html';
+        window.location.href = 'http://54.163.4.78:3000/reset/password-reset.html';
     })
 
 });

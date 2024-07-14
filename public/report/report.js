@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 document.addEventListener("DOMContentLoaded", function(event){
     getDate();
     displayAllExpenses();
