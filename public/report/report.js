@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event){
     getDate();
     displayAllExpenses();
-    document.getElementsByClassName('download-btn')[0].onclick = downloadData();
+    document.getElementsByClassName('download-btn')[0].onclick = downloadData;
 })
 
 
