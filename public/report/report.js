@@ -1,19 +1,18 @@
-document.addEventListener("DOMContentLoaded", function(event){
+document.addEventListener("DOMContentLoaded", function(event) {
     getDate();
     displayAllExpenses();
-    document.getElementsByClassName('download-btn')[0].onclick = downloadData;
-})
+    document.getElementById('download-btn').onclick = downloadData;
+});
 
-
-
+// Function to get and display the current date
 function getDate() {
     var today = new Date();
-    
+
     var monthNames = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    
+
     var day = ('0' + today.getDate()).slice(-2);
     var month = monthNames[today.getMonth()];
     var year = today.getFullYear();
@@ -27,29 +26,27 @@ function getDate() {
     // document.getElementById('notes-year').innerHTML = 'Notes Report' + ' ' + year;
 }
 
-
+// Function to display all expenses with pagination
 function displayAllExpenses(page = 1) {
     const token = localStorage.getItem('token');
-    
     const rows = localStorage.getItem('rows');
 
-    axios.get(`http://54.163.4.78:3000/premium/showexpenses?page=${page}&rows=${rows}`, { headers: { 'Authorization': token }})
+    axios.get(`http://54.163.4.78:3000/premium/showexpenses?page=${page}&rows=${rows}`, { headers: { 'Authorization': token } })
     .then(response => {
         const data = response.data.result;
-        console.log(data)
+        console.log(data);
+
         if (!data || !Array.isArray(data)) {
             console.log("No data found");
             return;
         }
-        
+
         const totalPages = response.data.totalPages;
         const currentPage = response.data.currentPage;
 
         const monthlydatatable = document.getElementById('monthly-table');
         monthlydatatable.innerHTML = "";
-        monthlydatatable.appendChild(createHeadings())
-        
-
+        monthlydatatable.appendChild(createHeadings());
 
         data.forEach(item => {
             const monthlydata = document.createElement('tr');
@@ -61,18 +58,17 @@ function displayAllExpenses(page = 1) {
             const category = document.createElement('td');
             category.innerHTML = item.category;
             const income = document.createElement('td');
-            income.innerHTML =  '0';
+            income.innerHTML = '0';
             const expense = document.createElement('td');
-            expense.innerHTML = item.amount
-    
+            expense.innerHTML = item.amount;
 
             monthlydata.appendChild(date);
             monthlydata.appendChild(description);
             monthlydata.appendChild(category);
             monthlydata.appendChild(income);
             monthlydata.appendChild(expense);
-            
-            monthlydatatable.appendChild(monthlydata)
+
+            monthlydatatable.appendChild(monthlydata);
         });
 
         // Pagination buttons
@@ -100,10 +96,8 @@ function displayAllExpenses(page = 1) {
     }).catch(err => console.log(err));
 }
 
-
+// Function to create table headings
 function createHeadings() {
-    
-
     const monthlyheading = document.createElement('tr');
     monthlyheading.id = 'monthly-heading';
     const date = document.createElement('th');
@@ -113,7 +107,7 @@ function createHeadings() {
     const category = document.createElement('th');
     category.innerHTML = 'Category';
     const income = document.createElement('th');
-    income.innerHTML =  "Income";
+    income.innerHTML = "Income";
     const expense = document.createElement('th');
     expense.innerHTML = 'Expense';
 
@@ -122,64 +116,25 @@ function createHeadings() {
     monthlyheading.appendChild(category);
     monthlyheading.appendChild(income);
     monthlyheading.appendChild(expense);
-    
+
     return monthlyheading;
 }
 
-
-function setRows(){
+// Function to set the number of rows to display
+function setRows() {
     const rows = document.getElementById('rows').value;
-    localStorage.setItem('rows', rows)
+    localStorage.setItem('rows', rows);
     displayAllExpenses(1, rows);
 }
 
-
-
-
-async function downloadData() {
-
+// Function to download data
+async function downloadData(event) {
+    event.preventDefault(); // Prevent default anchor behavior
     const token = localStorage.getItem('token');
-    await axios.get('http://54.163.4.78:3000/user/download', { headers: { 'Authorization': token }})
+    await axios.get('http://54.163.4.78:3000/user/download', { headers: { 'Authorization': token } })
     .then(response => {
-        console.log('in1')
         var a = document.createElement('a');
         a.href = response.data.url;
         a.click();
-    }).catch(err => console.log(err))
-
+    }).catch(err => console.log(err));
 }
-
-
-
-
-/* <div class="yearly-expense">
-    <h3>Yearly Report</h3>
-    <table>
-        <tr id="yearly-heading">
-          <th>Month</th>
-          <th>Income</th>
-          <th>Expense</th>
-          <th>Savings</th>
-        </tr>
-        <tr id="yearly-data">
-          <td>Alfreds</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Maria Anders</td>
-        </tr>
-      </table>
-</div>
-
-<div class="notes-report">
-    <h3 id="notes-year"></h3>
-    <table>
-        <tr id="notes-heading">
-            <th>Date</th>
-            <th>Notes</th>
-        </tr>
-        <tr id="notes-data">
-            <td>Date</td>
-            <td>Notes</td>
-        </tr>
-    </table>
-</div> */
