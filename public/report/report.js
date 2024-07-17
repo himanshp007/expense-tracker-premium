@@ -139,7 +139,6 @@ function setRows(){
 async function downloadData() {
 
     const token = localStorage.getItem('token');
-    console.log('in')
     await axios.get('http://54.163.4.78:3000/user/download', { headers: { 'Authorization': token }})
     .then(response => {
         console.log('in1')

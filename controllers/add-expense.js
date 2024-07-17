@@ -8,6 +8,8 @@ const S3Services = require("../services/s3services");
 
 exports.downloadExpense = async (req, res) => {
     try {
+
+        console.log('inside ctrl')
         const userid = req.user.id;
         const expenses = await req.user.getExpenses();
         const stringified = JSON.stringify(expenses);
@@ -17,6 +19,7 @@ exports.downloadExpense = async (req, res) => {
             url: fileUrl,
             userId: userid
         });
+        console.log(fileUrl)
         res.status(200).json({ url: fileUrl });
     } catch (err) {
         res.status(500).json({ err: err.message });
