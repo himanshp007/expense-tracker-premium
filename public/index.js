@@ -293,21 +293,21 @@ function premiumUser() {
     }
 }
 
-function createLeader() {
+// function createLeader() {
 
-    const div = document.getElementById('leader_container');
-    div.innerHTML = "";
+//     const div = document.getElementById('leader_container');
+//     div.innerHTML = "";
 
-    const leaderHeading = document.createElement('h4');
-    leaderHeading.id = 'leaderheading';
-    leaderHeading.innerHTML = "Leaderboard";
+//     const leaderHeading = document.createElement('h4');
+//     leaderHeading.id = 'leaderheading';
+//     leaderHeading.innerHTML = "Leaderboard";
 
-    const ul = document.createElement('ul');
-    ul.id = 'leaderlist';
+//     const ul = document.createElement('ul');
+//     ul.id = 'leaderlist';
 
-    div.appendChild(leaderHeading);
-    div.appendChild(ul);
-}
+//     div.appendChild(leaderHeading);
+//     div.appendChild(ul);
+// }
 
 
 
