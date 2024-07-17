@@ -43,6 +43,7 @@ td{
     background-color: rgb(26, 237, 174);
 }
 
+
 #icon {
     text-decoration: none;
 }
@@ -58,6 +59,13 @@ button.active {
     font-weight: bold;
     background-color: #ccc;
 }
+
+#download-btn {
+    border: none;
+    background-color: rgb(26, 237, 174);
+}
+
+
 
 
 
